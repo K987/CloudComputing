@@ -27,7 +27,7 @@ CREATE TABLE aggregates(
     aggregate_rain_avg DECIMAL NOT NULL,
     aggragate_rain_min DECIMAL NOT NULL,
     aggragate_rain_max DECIMAL NOT NULL,
-    aggregate_rain_stddev DECIMAL NOT NULL,
+    aggregate_rain_stddev DECIMAL NOT NULL
     );
 
 ALTER TABLE aggregates OWNER TO postgres;

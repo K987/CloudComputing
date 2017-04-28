@@ -4,6 +4,6 @@ aggregates
 TO wt_crud_role;
 
 GRANT USAGE, SELECT, UPDATE ON
-observation_ID_seq,
-aggregate_ID_seq
+observations_observation_ID_seq,
+aggregates_aggregate_ID_seq
 TO wt_crud_role;
