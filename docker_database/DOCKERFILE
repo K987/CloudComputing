@@ -1,0 +1,9 @@
+#using small linux distro for postgres https://hub.docker.com/_/postgres/
+FROM postgres:9.6-alpine
+
+#set locale to hu
+RUN localedef -i hu_HU -c -f UTF-8 -A /usr/share/locale/locale.alias hu_HU.UTF-8
+ENV LANG hu_HU.utf8
+
+#copy database init scripts
+COPY  /docker-entrypoint-initdb.d
