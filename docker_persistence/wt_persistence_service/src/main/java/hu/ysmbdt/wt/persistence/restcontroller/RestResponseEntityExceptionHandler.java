@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import hu.ysmbdt.wt.persistence.exception.CityNotFoundException;
 import hu.ysmbdt.wt.persistence.exception.NotFoundException;
+import hu.ysmbdt.wt.persistence.exception.RestServiceException;
 import hu.ysmbdt.wt.persistence.exception.SkyNotFoundException;
 
 /**
@@ -31,4 +32,12 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 	protected ResponseEntity<Object> handleNonExistingResource(NotFoundException ex, WebRequest request){	
 		return handleExceptionInternal(ex, ex.getBody(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 	}
+	
+	@ResponseBody
+	@ExceptionHandler(value = {RestServiceException.class})
+	protected ResponseEntity<Object> handleIllegalArgument(RestServiceException ex, WebRequest request){	
+		return handleExceptionInternal(ex,  ex.toString(), new HttpHeaders(), ex.getHttpStatusCode(), request);
+	}
+	
+
 }

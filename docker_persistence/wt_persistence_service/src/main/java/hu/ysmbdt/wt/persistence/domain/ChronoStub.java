@@ -3,8 +3,8 @@
  */
 package hu.ysmbdt.wt.persistence.domain;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Date;
+import java.sql.Time;
 
 /**
  * 
@@ -13,16 +13,16 @@ import java.time.LocalTime;
  */
 public class ChronoStub {
 
-	private LocalDate fromDate;
-	private LocalTime fromTime;
-	private LocalDate toDate;
-	private LocalTime toTime;
+	private Date fromDate;
+	private Time fromTime;
+	private Date toDate;
+	private Time toTime;
 
 	public ChronoStub(String fromDate, String fromTime, String toDate, String toTime) {
-		this.fromDate = LocalDate.parse(fromDate);
-		this.fromTime = LocalTime.parse(fromTime);
-		this.toDate = LocalDate.parse(toDate);
-		this.toTime = LocalTime.parse(toTime);
+		this.fromDate = Date.valueOf(fromDate);
+		this.fromTime = Time.valueOf(fromTime);
+		this.toDate = Date.valueOf(toDate);
+		this.toTime = Time.valueOf(toTime);
 	}
 	
 	public ChronoStub(){
@@ -32,65 +32,61 @@ public class ChronoStub {
 	/**
 	 * @return the fromDate
 	 */
-	public LocalDate getFromDate() {
+	public Date getFromDate() {
 		return fromDate;
+	}
+
+	/**
+	 * @return the fromTime
+	 */
+	public Time getFromTime() {
+		return fromTime;
+	}
+
+	/**
+	 * @return the toDate
+	 */
+	public Date getToDate() {
+		return toDate;
+	}
+
+	/**
+	 * @return the toTime
+	 */
+	public Time getToTime() {
+		return toTime;
 	}
 
 	/**
 	 * @param fromDate the fromDate to set
 	 */
 	public void setFromDate(String fromDate) {
-		this.fromDate = LocalDate.parse(fromDate);
-	}
-
-	/**
-	 * @return the fromTime
-	 */
-	public LocalTime getFromTime() {
-		return fromTime;
+		this.fromDate = fromDate == null ? null : Date.valueOf(fromDate);
 	}
 
 	/**
 	 * @param fromTime the fromTime to set
 	 */
 	public void setFromTime(String fromTime) {
-		this.fromTime = LocalTime.parse(fromTime);
-	}
-
-	/**
-	 * @return the toDate
-	 */
-	public LocalDate getToDate() {
-		return toDate;
+		this.fromTime = fromTime  == null ? null : Time.valueOf(fromTime);
 	}
 
 	/**
 	 * @param toDate the toDate to set
 	 */
 	public void setToDate(String toDate) {
-		this.toDate = LocalDate.parse(toDate);
-	}
-
-	/**
-	 * @return the toTime
-	 */
-	public LocalTime getToTime() {
-		return toTime;
+		this.toDate = toDate == null ? null : Date.valueOf(toDate);
 	}
 
 	/**
 	 * @param toTime the toTime to set
 	 */
 	public void setToTime(String toTime) {
-		this.toTime = LocalTime.parse(toTime);;
+		this.toTime = fromTime  == null ? null : Time.valueOf(toTime);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return String.format("ChronoStub [fromDate=%s, fromTime=%s, toDate=%s, toTime=%s]", fromDate, fromTime, toDate, toTime);
-	}
-
+	
+	
 }
+	
+	
