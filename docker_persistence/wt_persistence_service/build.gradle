@@ -4,15 +4,21 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		maven {
+      		url "https://plugins.gradle.org/m2/"
+    	}
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "gradle.plugin.at.comm_unity.gradle.plugins:jpamodelgen-plugin:1.1.3"
 	}
 }
+
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: "at.comm_unity.gradle.plugins.jpamodelgen"
 
 targetCompatibility = 1.8
 sourceCompatibility = 1.8
@@ -26,4 +32,13 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-actuator')
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.0.0'
+	compile group: 'com.querydsl', name: 'querydsl-jpa', version: '4.1.4'
+	//compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.23.0.RELEASE'
 }
+
+jpaModelgen {
+    library = "org.hibernate:hibernate-jpamodelgen:4.3.8.Final"
+    jpaModelgenSourcesDir = "src/src/java"
+}
+
+compileJava.options.compilerArgs += ["-proc:none"]
