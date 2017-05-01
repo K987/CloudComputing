@@ -10,9 +10,13 @@
         password: pwd123
       authentication_service:
         url: http://192.168.99.100:8080
-  b. docker run -e "SPRING_PROFILES_ACTIVE=docker_env" -e "DATABASE_HOST=<ip_of_database_container>" -e "DATABASE_PORT=<exposed_port_of_database_container>" -e "DATABASE_USER=<database_user>" -e "DATABASE_PASSWORD=<database_user_password>" -e "AUTH_SERVICE_HOST=<ip_of_autch_service_container>" -e "AUTH_SERVICE_PORT=<exposed_port_of_auth_service>"--detach --name <name_of_the_container> -p 8070:8080 <name_of_the_image>
+ 
+ 
+      b. docker run -e "SPRING_PROFILES_ACTIVE=docker_env" -e "DATABASE_HOST=<ip_of_database_container>" -e "DATABASE_PORT=<exposed_port_of_database_container>" -e "DATABASE_USER=<database_user>" -e "DATABASE_PASSWORD=<database_user_password>" -e "AUTH_SERVICE_HOST=<ip_of_autch_service_container>" -e "AUTH_SERVICE_PORT=<exposed_port_of_auth_service>"--detach --name <name_of_the_container> -p 8070:8080 <name_of_the_image>
     to find out the host of containers run docker-machine ip
-  c. docker run -e "SPRING_PROFILES_ACTIVE=docker_linked" --link <databse_container_name>:weatherDB --link <auth_service_container_name>:authDB --detach --name <name_of_the_container> -p 8070:8080 <name_of_the_image>
+ 
+ 
+      c. docker run -e "SPRING_PROFILES_ACTIVE=docker_linked" --link <databse_container_name>:weatherDB --link <auth_service_container_name>:authDB --detach --name <name_of_the_container> -p 8070:8080 <name_of_the_image>
     not yet tested
 
 Provided services:
