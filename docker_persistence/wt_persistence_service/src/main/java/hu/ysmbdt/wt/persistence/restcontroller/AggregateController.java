@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 
-import hu.ysmbdt.wt.persistence.auth.ClientAuthenticationService;
 import hu.ysmbdt.wt.persistence.converter.AggregateConverter;
 import hu.ysmbdt.wt.persistence.domain.AggregateStub;
 import hu.ysmbdt.wt.persistence.entity.City;
@@ -49,9 +48,6 @@ class AggregateController {
 	@Autowired
 	private AggregateRepository repository;
 
-	@Autowired
-	private ClientAuthenticationService authService;
-
 	@RequestMapping(value = "/city/cities", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<?> getAvailableCities() {
 		log.info("getAvailableCities invoked");
@@ -73,7 +69,6 @@ class AggregateController {
 	public Collection<AggregateStub> findByCityDescending(@PathVariable String city) {
 		log.info("findByCityDescending invoked with param: " + city);
 
-		// checkToken(token);
 		City enumCity = checkCity(city);
 
 		return this.converter.to(this.repository.findByArea(enumCity, AggregateRepositoryHelper.SORT_BY_DESC_DATE_TIME));
@@ -110,11 +105,5 @@ class AggregateController {
 		return enumCity;
 	}
 
-	private void checkToken(String token) {
-
-		if (!this.authService.checkToken(token)) {
-			throw new RestServiceException(null, "Invalid token", HttpStatus.FORBIDDEN);
-		}
-	}
 
 }
