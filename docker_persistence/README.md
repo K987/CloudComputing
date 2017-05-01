@@ -30,22 +30,19 @@ Provided services:
 
 for every service you have to put the access token in the request header "access-token" : "Bearer <token>"
 
-GET <host>:8070/aggregate/getById/{id}
+GET <host>:8070/aggregate/{id}
       
       output: the weather data of the given id
       
-GET <host>:8070/aggregate/{city}
-     
-     output: the weather datas of the given city (acceptable: DEBRECEN,BUDAPEST,SZEGED,SOPRON)
+GET <host>:8070/aggregate/cities
+
+      output: list of cities
+GET <host>:8070/aggregate/cities/{city}
+  
+     output: the weather datas of the given city 
       
-POST <host>:8070/aggregate/{city}
+GET <host:>8070/aggregate/city/BUDAPEST/time?fromDate=<yyyy-mm-dd>&fromTime=<hh:mm:ss>&toDate=<optional_paramater>&toTime=<optional_paramater>
       
-      input {
-              "fromDate": "yyyy-mm-dd",
-              "fromTime": "hh:00:00",
-              "toDate": "yyyy-mm-dd",
-              "toTime": "hh:00:00"
-          }
       
       output: data of the given period in the given city
       
