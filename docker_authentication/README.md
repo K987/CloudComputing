@@ -15,11 +15,16 @@ POST <host>:8080/login
       }
   
   output
-    if user validated:
+    if user validated (status code : 200):
       {
         "userName" : "<name_of_the_user>",
         "token" : "<token>",
         "validTo" : <token_validity_ends>
+      }
+     if user not validated (status code : 403)
+      {
+        "status" : 403,
+        "message" : "wrong username or password"
       }
       
       NOTE: at current stage of implementation acceptable user and password is (Kalman pwd123)
