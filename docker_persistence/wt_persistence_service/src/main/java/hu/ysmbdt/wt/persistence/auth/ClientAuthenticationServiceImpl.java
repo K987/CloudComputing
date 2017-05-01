@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -28,8 +29,13 @@ public class ClientAuthenticationServiceImpl implements ClientAuthenticationServ
 
 	private static final Logger log = Logger.getLogger(ClientAuthenticationServiceImpl.class);
 	
+	@Value("${spring.authentication_service.url}")
+	private String authHost;
+	
 	@Override
 	public boolean checkToken(String token) {
+		
+		log.info("AUTH HOST IS "+authHost);
 		
 		log.info("checkToken invoked w param: "+token);
 		HttpHeaders headers = new HttpHeaders();
@@ -55,7 +61,8 @@ public class ClientAuthenticationServiceImpl implements ClientAuthenticationServ
 			public void handleError(ClientHttpResponse response) throws IOException {				
 			}
 		});
-		ResponseEntity<String> response = builder.build().exchange("http://192.168.99.100:8080/check", HttpMethod.POST, entity, String.class);
+		
+		ResponseEntity<String> response = builder.build().exchange(authHost+"/check", HttpMethod.POST, entity, String.class);
 		
 		
 		return response.getStatusCodeValue() < 400;
