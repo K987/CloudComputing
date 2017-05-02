@@ -1,9 +1,7 @@
-
-
-// Express setup (incl. logging)
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var redis = require('redis');
 
 var PORT = process.env.PORT || 8080;
 
@@ -12,9 +10,8 @@ var app = express();
 app.use(morgan('[:date[iso]] :method :url\t:status'));
 app.use(bodyParser.json({ type: 'application/json' }))
 
-// Redis Setup
-var redis = require('redis'),
-    client = redis.createClient(process.env.DB_PORT, process.env.DB_HOST, {});
+var client = redis.createClient(process.env.DB_PORT, process.env.DB_HOST, {});
+client.set('healthcheck','iam ok');
 
 client.on('connect', function() {
     console.log('Connected to Redis');
@@ -22,6 +19,18 @@ client.on('connect', function() {
 
 
 var token = 'askljkfds123242'
+
+function getHealth(callback) {
+  return client.get('healthcheck', callback);
+}
+
+app.get('/healthCheck', function(req,res){
+  getHealth(function(err,reply){
+    var rtrn = (reply == null ? "i am not healthy" : reply);
+    res.status(200).send({healthCheck : rtrn });
+  })
+});
+
 
 app.post('/login', function (req, res) {
   if ( req.body.userName === 'Kalman' && req.body.userPassword === 'pwd123') {
