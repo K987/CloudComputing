@@ -7,7 +7,9 @@ NOTE: if container is deleted the content of the DB will be lost.
 Provided services:
 
 POST <host>:8080/login
+  
   description: provides an access token for the given user credentials
+  
   input:
       {
         "userName" : "<name_of_the_user>", 
@@ -15,14 +17,18 @@ POST <host>:8080/login
       }
   
   output
-    if user validated (status code : 200):
-      {
+  
+  if user validated (status code : 200):
+  
+  {
         "userName" : "<name_of_the_user>",
         "token" : "<token>",
         "validTo" : <token_validity_ends>
       }
-     if user not validated (status code : 403)
-      {
+  
+  if user not validated (status code : 403)
+  
+  {
         "status" : 403,
         "message" : "wrong username or password"
       }
