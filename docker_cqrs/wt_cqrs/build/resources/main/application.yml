@@ -1,0 +1,56 @@
+spring:
+  profiles:
+    active: hardwired
+
+---
+
+spring:
+  profiles: hardwired
+  jpa:
+    show-sql: true
+  datasource:
+      platform: postgres
+      url: jdbc:postgresql://192.168.99.100:5432/weather_db
+      username: wt_crud_user
+      password: pwd123
+      driverClassName: org.postgresql.Driver
+  h2:
+    console:
+      enabled: true
+  management:
+    security:
+      enabled: false
+---
+spring:
+  profiles: docker_env
+  jpa:
+    show-sql: true
+  datasource:
+      platform: postgres
+      url: jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/weather_db
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+      driverClassName: org.postgresql.Driver
+  h2:
+    console:
+      enabled: true
+  management:
+    security:
+      enabled: false
+---
+spring:
+  profiles: docker_linked
+  jpa:
+    show-sql: true
+  datasource:
+      platform: postgres
+      url: jdbc:postgresql://weatherDB:5432/weather_db
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+      driverClassName: org.postgresql.Driver
+  h2:
+    console:
+      enabled: true
+  management:
+    security:
+      enabled: false

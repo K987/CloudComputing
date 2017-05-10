@@ -5,7 +5,7 @@ CREATE TABLE observations(
   observation_time TIMESTAMP NOT NULL,
   observation_temperature DECIMAL NOT NULL,
   observation_wind_speed DECIMAL NOT NULL,
-  obeservation_rain DECIMAL NOT NULL,
+  observation_rain DECIMAL NOT NULL,
   observation_sky VARCHAR(100) NOT NULL
   );
 
