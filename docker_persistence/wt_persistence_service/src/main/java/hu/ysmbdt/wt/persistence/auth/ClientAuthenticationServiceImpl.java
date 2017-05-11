@@ -62,7 +62,7 @@ public class ClientAuthenticationServiceImpl implements ClientAuthenticationServ
 			}
 		});
 		
-		ResponseEntity<String> response = builder.build().exchange(authHost+"/check", HttpMethod.POST, entity, String.class);
+		ResponseEntity<String> response = builder.build().exchange(authHost+"/auth/check", HttpMethod.POST, entity, String.class);
 		
 		
 		return response.getStatusCodeValue() < 400;

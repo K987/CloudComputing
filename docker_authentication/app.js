@@ -29,6 +29,7 @@ app.get('/auth/healthCheck', function(req,res){
     var rtrn = (reply == null ? "i am not healthy" : reply);
     res.status(200).send({healthCheck : rtrn });
   })
+      //res.status(200).send('ok');
 });
 
 

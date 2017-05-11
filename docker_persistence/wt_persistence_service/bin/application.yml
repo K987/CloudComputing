@@ -37,7 +37,7 @@ spring:
     console:
       enabled: true
   authentication_service:
-    url: http://${AUTH_SERVICE_HOST}:${AUTH_SERVICE_HOST}
+    url: http://${AUTH_SERVICE_HOST}:${AUTH_SERVICE_PORT}
   management:
     security:
       enabled: false
