@@ -24,7 +24,7 @@ function getHealth(callback) {
   return client.get('healthcheck', callback);
 }
 
-app.get('/healthCheck', function(req,res){
+app.get('/auth/healthCheck', function(req,res){
   getHealth(function(err,reply){
     var rtrn = (reply == null ? "i am not healthy" : reply);
     res.status(200).send({healthCheck : rtrn });
@@ -32,7 +32,7 @@ app.get('/healthCheck', function(req,res){
 });
 
 
-app.post('/login', function (req, res) {
+app.post('/auth/login', function (req, res) {
   if ( req.body.userName === 'Kalman' && req.body.userPassword === 'pwd123') {
     var response = {
       userName: req.body.userName,
@@ -49,7 +49,7 @@ app.post('/login', function (req, res) {
   }
 });
 
-app.post('/check', function (req, res){
+app.post('/auth/check', function (req, res){
   if (req.body.token === 'Bearer '+token){
     res.status(204).end();
   } else {
