@@ -1,0 +1,4 @@
+include 'wt_authentication'
+include 'wt_cqrs'
+include 'wt_database'
+include 'wt_persistence_service'

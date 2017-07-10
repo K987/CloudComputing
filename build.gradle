@@ -1,0 +1,8 @@
+apply plugin: 'eclipse'
+
+allprojects{
+	repositories {
+		mavenCentral()
+		maven { url "http://repository.pentaho.org/artifactory/repo" }
+	}
+}

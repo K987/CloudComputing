@@ -15,3 +15,7 @@ uses: docker_database
 
 PostgreSql database for persistence
 
+## docker_cqrs
+
+Spring boot application produces input data and frequently aggregates observations
+uses: docker_database
