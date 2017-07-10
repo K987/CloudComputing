@@ -19,3 +19,9 @@ PostgreSql database for persistence
 
 Spring boot application produces input data and frequently aggregates observations
 uses: docker_database
+
+## launch order in docker:
+  1. docker_authentication
+  2. docker_database (in dev env, in prod use Amazon RDS postgres)
+  3. docker_persistence
+  4. docker_cqrs
