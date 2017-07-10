@@ -8,7 +8,7 @@
 
 # Provided services:
 
-1. POST <host>:8080/login
+1. POST auth/login
 
   * description: provides an access token for the given user credentials
 
@@ -29,6 +29,7 @@
   "validTo" : <token_validity_ends>
 }
 ```
+
     * if user not validated (status code : 403)
 ```javascript
 {
@@ -37,7 +38,7 @@
 }
 ```
 
-2. POST <host>:8080/register
+2. POST auth/register
 
   * description: registers a new user
 
@@ -51,3 +52,15 @@
   * _output:_
 
     * if user registered (status code : 204) - no content
+
+3. GET auth/healthCheck
+
+  * description: service health check.
+  * _input:_
+  * _output:_
+
+4. POST auth/check
+
+  * description: check if the given token is still valid.
+  * _input:_
+  * _output:_
