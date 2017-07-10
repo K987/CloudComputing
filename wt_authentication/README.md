@@ -10,18 +10,18 @@ Provided services:
 
 1. POST <host>:8080/login
 
-  ..*description: provides an access token for the given user credentials
+  ..* description: provides an access token for the given user credentials
 
-  ..*input:
+  ..* input:
  ```javascript
       {
         "userName" : "<name_of_the_user>",
         "userPassword" : "<userPassword>"
       }
 ```
-  ..*output:
+  ..* output:
 
-  ..*if user validated (status code : 200):
+  ..* if user validated (status code : 200):
 ```javascript
   {
         "userName" : "<name_of_the_user>",
@@ -29,7 +29,7 @@ Provided services:
         "validTo" : <token_validity_ends>
       }
 ```
-  ..*if user not validated (status code : 403)
+  ..* if user not validated (status code : 403)
   ```javascript
   {
         "status" : 403,
