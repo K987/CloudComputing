@@ -6,36 +6,48 @@
 
 ---
 
-Provided services:
+# Provided services:
 
 1. POST <host>:8080/login
 
-  ..* description: provides an access token for the given user credentials
+  * description: provides an access token for the given user credentials
 
-  ..* input:
- ```javascript
-      {
-        "userName" : "<name_of_the_user>",
-        "userPassword" : "<userPassword>"
-      }
-```
-  ..* output:
-
-  ..* if user validated (status code : 200):
+  * _input:_
 ```javascript
-  {
-        "userName" : "<name_of_the_user>",
-        "token" : "<token>",
-        "validTo" : <token_validity_ends>
-      }
+{
+  "userName" : "<name_of_the_user>",
+  "userPassword" : "<userPassword>"
+}
 ```
-  ..* if user not validated (status code : 403)
-  ```javascript
-  {
-        "status" : 403,
-        "message" : "wrong username or password"
-      }
+  * _output:_
+
+    * if user validated (status code : 200):
+```javascript
+{
+  "userName" : "<name_of_the_user>",
+  "token" : "<token>",
+  "validTo" : <token_validity_ends>
+}
 ```
->      NOTE: at current stage of implementation acceptable user and password is (Kalman pwd123)
->      NOTE: at current stage token is askljkfds123242
->      NOTE: at current stage token doesn't expire
+    * if user not validated (status code : 403)
+```javascript
+{
+  "status" : 403,
+  "message" : "wrong username or password"
+}
+```
+
+2. POST <host>:8080/register
+
+  * description: registers a new user
+
+  * _input:_
+```javascript
+{
+  "userName" : "<name_of_the_user>",
+  "userPassword" : "<userPassword>"
+}
+```
+  * _output:_
+
+    * if user registered (status code : 204) - no content
